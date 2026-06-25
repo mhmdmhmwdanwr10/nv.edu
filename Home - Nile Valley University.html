@@ -1015,7 +1015,7 @@
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a class="c-p menu-link" href="https://lms.nv.edu.eg/FinalResult/Results">
+                                                                    <a class="c-p menu-link" href="General Result - Nile Valley University.htm">
                                                                         <b class="badge bg-danger pull-right"></b>
                                                                         <i class="fa fa-angle-right"></i>
                                                                         <span class="title">Final Result</span>
@@ -1258,9 +1258,11 @@
                             </nav>
                             <!-- / nav -->
                         </section>
-                        <footer class="footer lt hidden-xs b-t b-dark pos-abt">
-                            <a href="https://lms.nv.edu.eg/Profile/StudentProfile#nav" data-toggle="class:nav-xs" id="btn-close-aside" style="min-width: 30px;" class="pull-right btn btn-sm btn-dark btn-icon"><i class="fa fa-angle-left text"></i><i class="fa fa-angle-right text-active"></i></a>
-                        </footer>
+                       <footer class="footer lt hidden-xs b-t b-dark pos-abt">
+    <a href="#nav" data-toggle="class:nav-xs" id="btn-close-aside" style="min-width: 30px;" class="pull-right btn btn-sm btn-dark btn-icon" onclick="event.preventDefault();">
+        <i class="fa fa-angle-left text"></i><i class="fa fa-angle-right text-active"></i>
+    </a>
+</footer>
                     </section>
                 </aside>
                 <!-- /.aside -->
@@ -1420,20 +1422,22 @@
                         <small class="text-uc text-xs text-muted m-t">graduation info.</small>
                         <div class="line"></div>
                         <div class="pos-rlt" style="height:180px;">
-                            <div class="easypiechart easyPieChart" style="position: absolute; left: calc(50% - 100px); width: 160px; height: 160px; line-height: 160px;" data-line-width="7" data-loop="false" data-track-color="#eeeeee" data-bar-color="#5fc7c8" data-size="160" data-scale-color="#f5f5f5" data-line-cap="butt" data-animate="1000" data-percent="0">
-                                <span class="h2" id="r-hours">134</span><span class="unit h5">Hrs</span>
-                                <div class="easypie-text">to be Graduated</div>
-                            <canvas width="160" height="160"></canvas></div>
-                        </div>
-                        <div class="btn-group btn-group-justified m-b">
-                            <a href="https://lms.nv.edu.eg/Support/SupportTickets" class="btn btn-primary btn-rounded">
-                                <span class="text"><i class="fa fa-question-circle"></i>Help &amp; Suggestions </span>
-                            </a>
-                            <a href="https://lms.nv.edu.eg/Videos/Videos" class="btn btn-dark btn-rounded">
-                                <i class="fa fa-play-circle"></i> Product Videos
-                            </a>
-                        </div>
-                    </div>
+													<div class="pos-rlt" style="height:180px;">
+					<div class="easypiechart easyPieChart" style="position: absolute; left: calc(50% - 100px); width: 160px; height: 160px; line-height: 160px;" data-line-width="7" data-loop="false" data-track-color="#eeeeee" data-bar-color="#5fc7c8" data-size="160" data-scale-color="#f5f5f5" data-line-cap="butt" data-animate="1000" data-percent="20">
+						<span class="h2" id="r-hours">115</span><span class="unit h5">Hrs</span>
+						<div class="easypie-text">to be Graduated</div>
+					</div>
+				</div>
+
+				<div class="btn-group btn-group-justified m-b">
+					<a href="../Support/SupportTickets" class="btn btn-primary btn-rounded">
+						<span class="text"><i class="fa fa-question-circle"></i>Help &amp; Suggestions </span>
+					</a>
+					<a href="../Videos/Videos" class="btn btn-dark btn-rounded">
+						<i class="fa fa-play-circle"></i> Product Videos
+					</a>
+				</div>
+				
                 </section>
             </section>
         </aside>
@@ -1496,6 +1500,20 @@
     <i class="fa  fa-file text-light fa-4x"></i>
     <p class="m-t">No Files founded for you.</p>
 </div>
+					<script>
+				$(document).ready(function() {
+					$('.easypiechart').easyPieChart({
+						barColor: '#5fc7c8',
+						trackColor: '#eeeeee',
+						scaleColor: false,
+						lineCap: 'butt',
+						lineWidth: 7,
+						size: 160,
+						animate: 1000
+					});
+				});
+			</script>
+
 <script>
     $(function () {
         debugger;
