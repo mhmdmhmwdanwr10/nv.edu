@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Equation Editor for online mathematics - create, integrate and download</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LaTeX equation editor that creates lightweight graphical equations (gif, png, swf, pdf, emf) and produces code to quickly and directly embedding equations into HTML websites, forums or blogs.">
+<meta name="keywords" content="LaTeX, mathematics, maths, math, mathmatic, matematic, MathML, editing, online, toolbar, editor, equations, equations, png, pdf, emf, svg.">
+<meta name="author" content="CodeCogs, Zyba Ltd">
+<meta name="copyright" content="Copyright (C) 2004-2026 CodeCogs, Zyba Ltd. This is NOT free software, although it can be used freely. It can only be hosted on a server and/or modify if you own a CodeCogs Commercial Licence for this product. You must retain a copy of this licence in all copies of the software. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.">
+<meta name="robots" content="index, follow">
+
+<link rel="icon" href="/favicon.ico">
+
+<script src="/assets/vendor/js/jquery/jquery-3.4.0.min.js"></script>
+<script src="/assets/js/scrolling.js"></script>
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<!-- Cookie Consent -->
+<script type="text/javascript" src="/assets/js/google/cookie_notice.min.js"></script>
+<script type="text/javascript" src="/assets/js/google/cookies-consent.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('consent', 'default', {
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'wait_for_update': 500,
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-3PHYBTVD4Z');
+
+  if(typeof grantButton !== "undefined") {
+    grantButton.addEventListener("click", function() {
+      localStorage.setItem("consentGranted", "true");
+      function gtag() { dataLayer.push(arguments); }
+
+      gtag('consent', 'update', {
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        ad_storage: 'granted',
+        analytics_storage: 'granted'
+      });
+    });
+  }
+
+  // Load gtag.js script.
+  var gtagScript = document.createElement('script');
+  gtagScript.async = true;
+  gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3PHYBTVD4Z';
+
+  var firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(gtagScript,firstScript);
+</script>
+
+<script type="module" src="/assets/vendor/js/js.cookie.min.js"></script>
+<script src="/eqneditor1.api.min.js"></script>
+<link rel="stylesheet" href="/eqneditor.css"/>
+
+<!-- Google Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2780686041799472" crossorigin="anonymous"></script>
+
+<script>
+function copyDivToClipboard(id) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(id));
+    window.getSelection().removeAllRanges(); // clear current selection
+    window.getSelection().addRange(range); // to select text
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();// to deselect
+}
+
+$(document).ready(function() {
+	mainOutput = new EqEditor.Output('output');
+	exportOutput = new EqEditor.Output('export_area','url');
+
+	EqEditor.TextArea.link('latexInput', true)
+		.addToolbar(new EqEditor.Toolbar('toolbar'), true)
+		.addOutput(mainOutput)
+		.addOutput(exportOutput)
+		.addHistoryMenu(new EqEditor.History('history'))
+		.insert("");
+
+	const interval = window.setInterval(function() {
+		// Get current slide
+		var $firstSlide = $('.featured_car').find('div:first');
+		var width = $firstSlide.width();
+		
+		// Move current slide out and next slide in
+		$firstSlide.animate({marginLeft: -width}, 1000, function() {
+			var $lastSlide = $('.featured_car').find('div:last');
+      		$lastSlide.after($firstSlide);
+			$firstSlide.css({marginLeft: 0})
+		});
+	}, 4000);
+
+	$("#export_options select").each(function() {
+		var a=Cookies.get(this.id);
+
+		if(a!==undefined) $(this).val(a).change();
+
+		$(this).change(function() { Cookies.set(this.id, $(this).val()); })
+	})
+
+});
+</script>
+
+</head>
+<body class="light">
+<!-- Navbar -->
+<header class="home scroll-fade" cc-fade-0="0" cc-fade-1000="0.9" cc-fade-attr="background">
+<nav class="navbar">
+	<div class="nav-brand logo-fade" cc-fade-0="0" cc-fade-1000="1" cc-fade-attr="opacity">
+		<a title="Home" href="/"><img src="/assets/images/Codecogs_mini.png" alt="Cogs" width="24"> &nbsp;Equation Editor</a>
+	</div>
+	<div class="nav-menu">
+		<button class="nav-toggle" type="button"  aria-label="Toggle navigation" onclick="$('#nav-toggle').toggleClass('show')">Menu</button>
+		<div id="nav-toggle">
+			<div><a title="Home Page" href="/home">Home</a></div>
+			<div><a title="Documentation Page" href="/docs">Documentation</a></div>
+			<div><a title="Support Page" href="/support">Support</a></div>
+			<div><a title="Log in" href="/login">Log in</a></div>
+			<div><a title="Licence Page" class="button green" href="/purchase">Buy</a></div>
+		</div>
+	</div>
+</nav>
+</header>
+<script>
+$(document).ready(function() {
+	// This should select the active navigation tag
+    $.each($('#nav-toggle').find('div'), function() {
+        $(this).toggleClass('active', 
+            window.location.pathname.indexOf($(this).find('a').attr('href')) > -1);
+    }); 
+});
+</script>
+			
+<!-- Flash messages -->
+
+		<section>
+<!-- Equation Editor -->
+<div id="adverta">
+	<div>
+		<!-- First column -->
+		<ins class="adsbygoogle"
+		style="display:inline-block;width:160px;height:600px"
+		data-ad-client="ca-pub-2780686041799472"
+		data-ad-slot="0356195497"></ins>
+		<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+	</div>
+	<div>
+	    <div class="header">
+			<div>
+				<img src="/assets/images/EqnEditor.png" alt="Logo">
+			</div>
+			<div>
+				<h1>Equation Editor <small>for online mathematics</small></h1>
+				<h3>- delivering thousands of beautiful equations every second -</h3>
+			</div>
+		</div> 
+
+		<p class="center">The World's most popular online equation editor using <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">LaTeX markup</a>. The <a href="https://editor.codecogs.com/docs/2-API.php">Editor API</a> allows seamless integration and customisation within websites, to deliver mathematics across the web and mobile platforms.</p> 
+
+		<div id="advertb">
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:728px;height:90px"
+			     data-ad-client="ca-pub-2780686041799472"
+			     data-ad-slot="2673707810"></ins>
+			<script>
+			     (adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+
+		<div id="equation-editor">
+			<div id="history"></div>
+			<div id="toolbar"></div>
+			<div id="latexInput" placeholder="Write Equation here..."></div>
+			<div class="hint">
+				Define equation with <a title="LaTeX Mathematics" href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">LaTeX markup</a>.<em>&lt;Tab&gt;</em> or <em>&lt;Ctrl+ arrows keys&gt;</em> to jump between brackets and matrix elements.
+			</div>
+			<div id="equation-output">
+				<img id="output" alt="equation" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+			</div>
+			<div id="export_options">
+				<div>
+					<button id="downloadBtn" onClick="mainOutput.download();">Download</button>
+				</div>
+				<div>
+					<select id="format" onchange="mainOutput.setFormat(this.value); exportOutput.setFormat(this.value);" title="Select the output format">
+						<option value="svg" selected>svg</option>
+						<option value="gif">gif</option>
+						<option value="png">png</option>
+						<option value="pdf">pdf</option>
+						<option value="emf">emf</option>
+					</select>
+					<select id="fontsize" onchange="mainOutput.setFontSize(this.value); exportOutput.setFontSize(this.value);" title="Select font size">
+						<option value="tiny">5 pt</option>
+						<option value="small">9 pt</option>
+						<option value="" selected>10 pt</option>
+						<option value="large">12 pt</option>
+						<option value="LARGE">18 pt</option>
+						<option value="huge">20 pt</option>
+					</select>
+					<select id="dpi" onchange="mainOutput.setDpi(this.value); exportOutput.setDpi(this.value);" title="Select the output resolution">
+						<option value="50">50</option>
+						<option value="80">80</option>
+						<option value="100">100</option>
+						<option value="110" selected>110</option>
+						<option value="120">120</option>
+						<option value="150">150</option>
+						<option value="200">200</option>
+						<option value="300">300</option>
+					</select>
+					<select id="bg" onchange="mainOutput.setBackground(this.value);exportOutput.setBackground(this.value);" title="Background color">
+						<option value="">Transparent</option>
+						<option value="white">White</option>
+						<option value="black">Black</option>
+						<option value="red">Red</option>
+						<option value="green">Green</option>
+						<option value="blue">Blue</option>
+					</select>
+					<select id="compressed" onchange="mainOutput.setInline(this.value=='true');exportOutput.setInline(this.value=='true')" title="Compression">
+						<option value="true">Inline</option>
+						<option value="false" selected>Block</option>
+					</select>
+
+					<select id="exportformat" onchange="exportOutput.setExportFormat(this.value);" title="Export output format">
+						<option value="wp">WordPress</option>
+						<option value="phpBB">phpBB</option>
+						<option value="tw">Tiny Wiki</option>
+						<option value="url" selected>url</option>
+						<option value="urlencoded">url encoded</option>
+						<option value="pre">xml pre</option>
+						<option value="doxygen">doxygen</option>
+						<option value="html">html</option>
+						<option value="latex">latex</option>
+					</select>
+				</div>
+			</div>
+			<div class="hint">
+				Formatted string containing your Equation for inclusion in other platforms. <em>Click text to copy to clipboard.</em>
+			</div>
+			<div id="export_area" onclick="copyDivToClipboard('export_area')">
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+<section>
+<div id="advertc" class="surround">
+	<div>
+		<!-- First column -->
+		<ins class="adsbygoogle"
+		style="display:inline-block;width:160px;height:400px"
+		data-ad-client="ca-pub-2780686041799472"
+		data-ad-slot="2389069233"></ins>
+		<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+	</div>
+	<div>
+		<h2>Key Features</h2>
+		<ul>
+			<li><strong>Professional</strong> - The fastest way to author equations on the web.</li>
+			<li><strong>Robust</strong> - Delivering equations every second to over 139,000 websites since 2005.</li>
+			<li><strong><a href="/docs/2-API.php">API</a></strong> - Seamless integration of the equation editor within any website.</li>
+			<li><strong>Auto Complete</strong> - Instant suggestions for all supported mathematics LaTeX markup.</li>
+			<li><strong>Syntax Highlighting</strong> - Colouring of similar terms and underlining of matching elements.</li>
+			<li><strong>Fully Customisable</strong> - Change the arrangement, order, and content of any panel. <a title="Customise Design" href="/docs/3-design.php">Read more.</a></li>
+			<li><strong>Plugins</strong> - Compatible with major WYSIWYG Editor.</a></li>
+			<li><strong>fxRender</strong> - Fully integrated with the <a title="fxRender" href="https://fxrender.codecogs.com"><i>fx</i>Render</a> plugin for Microsoft Excel.</li>
+			<li><strong>Tables</strong> - Copy and Paste tables from Excel and Word.</li>
+		</ul>
+	</div>
+</div>
+</section>
+
+
+<section class="center">
+<h2>Ready for Developers</h2>
+<p class="p-xs">The CodeCogs Equation Editor is compatible with all JavaScript framework, with native integration with popular HTML editors to save time and effort.</p>
+
+
+<div class="favourite_block">
+
+<a href="/docs/2-CK_Editor_v5.php" aria-label="Read more about CKEditor 5 integration">
+	<div class="sprite">
+		<img src="/assets/images/ckeditor/ckeditor-logo.svg"/>
+	</div>
+</a>
+
+<a href="docs/3-Tiny_MCE_v6.php" aria-label="Read more about Tiny MCE 6 integration">
+	<div class="sprite">
+		<img src="/assets/images/tinymce/tinymce-logo.svg"/>
+	</div>
+</a>
+
+
+<a href="docs/5-Angular.php" aria-label="Read more about Angular integration">
+	<div class="sprite">
+		<img src="/assets/images/angular/angular-logo.svg"/>
+	</div>
+</a>
+
+<a href="docs/2-API.php" aria-label="Read more about Typescript integration">
+	<div class="sprite">
+		<img src="/assets/images/typescript/typescript-logo.svg"/>&nbsp;<b>Type</b>Script
+	</div>
+</a>
+</div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+
+<div class="footer">
+	<div>
+		<ul>
+			<li><strong>Zyba Ltd.</strong></li>
+			<li>Broadwood</li>
+			<li>Holford</li>
+			<li>Bridgwater</li>
+			<li>N19 5GU, UK</li>
+		</ul>
+	    <br>
+		<ul>
+			<li>Phone: +44 (0)207 690 0485</li>
+			<li><a title="Email CCell" href="mailto:sales@codecogs.com">Mail: sales@codecogs.com</a></li>
+		</ul>
+	</div>
+	<div>
+		<ul>
+			<li><a title="Home Page" href="/home">Home</a></li>
+			<li><a title="Lience Page" href="/purchase">Licence</a></li>
+		</ul>
+		<br>
+		<ul>
+			<li><a title="Support Page" href="/support">Support</a></li>
+			<li><a title="Fair Usage Page" href="/support/3-fair_usage.php">Fair usage</a></li>
+			<li><a title="Terms of Use Page" href="/support/4-terms_of_use.php">Terms of usage</a></li>
+			<li><a title="Contact Page" href="/contact">Contact</a></li>
+		</ul>
+	</div>
+	<div>
+		<ul>
+			<li>Zyba Ltd © 2004-2026</li>
+		</ul>
+	</div>
+</div>
+
+</footer></body>
+</html>
